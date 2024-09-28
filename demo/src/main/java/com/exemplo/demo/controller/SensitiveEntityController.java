@@ -33,12 +33,10 @@ public class SensitiveEntityController {
         }
         return ResponseEntity.ok(entities);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<SensitiveEntity> getEntityById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteEntity(@PathVariable Long id) {
         service.delete(id);

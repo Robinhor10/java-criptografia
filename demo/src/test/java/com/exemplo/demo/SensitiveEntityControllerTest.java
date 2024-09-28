@@ -57,5 +57,6 @@ public class SensitiveEntityControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
     }
+
 }
 

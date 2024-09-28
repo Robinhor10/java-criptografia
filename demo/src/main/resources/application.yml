@@ -9,3 +9,16 @@ spring:
       show-sql: ${SPRING_JPA_SHOW_SQL_LOG}
     properties:
       hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  springdoc:
+    api-docs:
+      path: /v3/api-docs
+    swagger-ui:
+      path: /swagger-ui.html
+# Configurações do Datadog
+  datadog:
+    service: spring_app # Nome do serviço no Datadog
+    env: dev            # Ambiente da aplicação (dev, staging, prod)
+    logs:
+      enabled: true     # Habilitar logs para o Datadog
+    tracing:
+      enabled: true     # Habilitar APM tracing
