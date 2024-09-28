@@ -26,10 +26,32 @@ services:
       SPRING_DATASOURCE_PASSWORD: demo_pass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_SHOW_SQL_LOG: true
+      DD_SERVICE: spring_app
+      DD_ENV: dev
+      DD_AGENT_HOST: datadog  # Aponta para o serviço datadog no compose
+      DD_TRACE_AGENT_PORT: 8126  # Porta onde o APM está escutando no agente Datadog
     ports:
       - "8080:8080"
     depends_on:
       - postgres
+      - datadog
+    networks:
+      - app_network
+
+  datadog:
+    image: datadog/agent:latest
+    environment:
+      DD_API_KEY: 7b8828fe1aee672a9b6983932c41bace
+      DD_APM_ENABLED: "true"
+      DD_LOGS_ENABLED: "true"
+      DD_PROCESS_AGENT_ENABLED: "true"
+      DD_ENV: dev
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /proc:/host/proc:ro
+      - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+    ports:
+      - "8126:8126"  # Porta para APM
     networks:
       - app_network
 
