@@ -41,7 +41,7 @@ services:
   datadog:
     image: datadog/agent:latest
     environment:
-      DD_API_KEY: 7b8828fe1aee672a9b6983932c41bace
+      DD_API_KEY: "your_datadog_api_key_here"
       DD_APM_ENABLED: "true"
       DD_LOGS_ENABLED: "true"
       DD_PROCESS_AGENT_ENABLED: "true"
